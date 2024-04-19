@@ -1,4 +1,10 @@
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+
+const routes = [
+  { url: '/', name: 'Home' },
+  { url: '/first', name: 'First' }
+]
 
 export default function Home() {
   return (
@@ -9,7 +15,15 @@ export default function Home() {
           <p>тут будут выкладываться мой прогресс в html/css и возможно js</p>
         </div>
         <div>
-          <Link href='/first'> - Первая</Link>
+          {routes.map((route, i) => {
+            if (i === 0) return
+            return (
+              <Link href={route.url} key={i}>
+                {' '}
+                <Button>{route.name}</Button>{' '}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
